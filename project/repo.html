@@ -1,36 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Repository</title>
-  <link rel="stylesheet" href="repo.css">
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>E-Repository</h1>
-      <p>Upload, share, and download documents easily.</p>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Resource Repository</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Website Theme */
+      :root {
+        --gold: #ffd700;
+        --navy: #003366;
+        --peach: #fad6d6;
+        --yellow: #ffc107;
+        --white: #ffffff;
+        --black: #000000;
+      }
 
-    <div class="main-content">
-      <!-- Left Section: File Upload -->
-      <div class="upload-section">
-        <h2>Upload Your File</h2>
-        <input type="file" id="file-input" />
-        <button id="upload-btn">Upload</button>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: var(--peach);
+        color: var(--navy);
+      }
+
+      .filter-title,
+      .card-title {
+        color: var(--navy);
+      }
+
+      .highlight {
+        color: var(--gold);
+      }
+
+      .btn-primary {
+        background-color: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--gold);
+        color: var(--black);
+      }
+
+      .btn-download {
+        background-color: var(--yellow);
+        color: var(--black);
+      }
+
+      .btn-download:hover {
+        background-color: var(--gold);
+        color: var(--white);
+      }
+      #filter-box {
+        position: fixed;
+        right: 40px;
+        width: 250px;
+        background-color: #003366; /* Navy Blue for background */
+        color: black;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      #filter-box select,
+      #filter-box button {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+      }
+
+      .btn-download {
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .resource-card {
+        margin-bottom: 20px;
+      }
+
+      .resource-card {
+        background-color: #ffffff; /* White background */
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        margin-bottom: 20px;
+      }
+
+      .resource-card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .description {
+        font-size: 14px;
+        color: #666666; /* Light gray for description text */
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .file-info {
+        font-size: 14px;
+        color: #555555; /* Medium gray for additional info */
+        margin-bottom: 4px;
+      }
+
+      .btn-download {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000000; /* Black text */
+        background-color: #ffc107; /* Yellow button */
+        border-radius: 4px;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .btn-download:hover {
+        background-color: #ffd700; /* Gold for hover state */
+        color: #000; /* Keep text black */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#">
+          <h1 style="color: #ffd700">AARON</h1>
+        </a>
+        <button
+          class="nav-toggle-btn"
+          data-nav-toggle-btn
+          aria-label="Toggle Menu"
+        >
+          <ion-icon name="menu-outline" class="open"></ion-icon>
+          <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li><a href="#" class="navbar-link">Home</a></li>
+            <li><a href="exam.html" class="navbar-link">E-Exam</a></li>
+            <li><a href="openforum.html" class="navbar-link">Openforum</a></li>
+            <li><a href="repo.html" class="navbar-link">E-Repository</a></li>
+            <li><a href="my-wall.html" class="navbar-link">My-Wall</a></li>
+            <li><a href="contactus.html" class="navbar-link">Contact Us</a></li>
+          </ul>
+
+          <div id="auth-container">
+            <!-- This section will dynamically show user info or register button -->
+          </div>
+        </nav>
       </div>
+    </header>
 
-      <!-- Right Section: Uploaded Files List -->
-      <div class="file-list-section">
-        <h2>Uploaded Files</h2>
-        <div id="file-list" class="file-list">
-          <!-- File items will appear here -->
+    <!-- Main Content -->
+    <main class="container mx-auto py-6 px-4 md:px-8">
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <div id="filter-box">
+          <h3 class="text-lg font-bold mb-4">Filters</h3>
+          <label>Category:</label>
+          <select id="category">
+            <option value="all">All</option>
+            <option value="cbse">CBSE</option>
+            <option value="govt-exams">Government Exams</option>
+            <option value="state-exams">State Exams</option>
+          </select>
+          <label>File Type:</label>
+          <select id="file-type">
+            <option value="all">All</option>
+            <option value="pdf">PDF</option>
+            <option value="word">Word</option>
+            <option value="image">Image</option>
+          </select>
+          <label>Year:</label>
+          <select id="year">
+            <option value="all">All</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+          <button id="filter-btn" class="bg-yellow-400 text-black py-2">
+            Apply Filters
+          </button>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="repo.js"></script>
-</body>
+        <!-- Repository Items -->
+        <section
+          class="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="repository"
+        >
+          <!-- Resource Card Example -->
+          <div
+            class="resource-card bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+            data-category="cbse"
+            data-file-type="pdf"
+            data-year="2023"
+          >
+            <h3 class="card-title text-lg font-bold truncate">
+              CBSE 12 Maths Notes
+            </h3>
+            <p class="text-sm text-gray-600 mb-3 truncate">
+              Detailed chapter-wise notes with solved examples.
+            </p>
+            <p class="text-sm text-gray-500">File Type: PDF</p>
+            <p class="text-sm text-gray-500 mt-2">Year: 2023</p>
+            <a
+              href="example.pdf"
+              download
+              class="block mt-4 btn-download py-2 rounded text-center"
+            >
+              Download
+            </a>
+          </div>
+
+          <div
+            class="resource-card bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+            data-category="govt-exams"
+            data-file-type="image"
+            data-year="2024"
+          >
+            <h3 class="card-title text-lg font-bold truncate">
+              UPSC Geography Notes
+            </h3>
+            <p class="text-sm text-gray-600 mb-3 truncate">
+              Images and diagrams for UPSC Geography.
+            </p>
+            <p class="text-sm text-gray-500">File Type: Image</p>
+            <p class="text-sm text-gray-500 mt-2">Year: 2024</p>
+            <a
+              href="geography-diagrams.zip"
+              download
+              class="block mt-4 btn-download py-2 rounded text-center"
+            >
+              Download
+            </a>
+          </div>
+
+          <div
+            class="resource-card bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
+            data-category="state-exams"
+            data-file-type="word"
+            data-year="2023"
+          >
+            <h3 class="card-title text-lg font-bold truncate">
+              MPSC History Notes
+            </h3>
+            <p class="text-sm text-gray-600 mb-3 truncate">
+              Complete history syllabus notes for MPSC.
+            </p>
+            <p class="text-sm text-gray-500">File Type: Word</p>
+            <p class="text-sm text-gray-500 mt-2">Year: 2023</p>
+            <a
+              href="mpsc-history.docx"
+              download
+              class="block mt-4 btn-download py-2 rounded text-center"
+            >
+              Download
+            </a>
+          </div>
+
+          <!-- Add more cards here -->
+        </section>
+      </div>
+    </main>
+
+    <!-- JavaScript for Filters -->
+    <script>
+      const data = [
+        {
+          title: "CBSE 12 Maths Notes",
+          description: "Detailed chapter-wise notes with solved examples.",
+          fileType: "PDF",
+          category: "cbse",
+          year: "2023",
+          file: "cbse-maths-notes.pdf",
+        },
+        {
+          title: "CBSE Physics Lab Manual",
+          description: "Complete lab experiments with solutions.",
+          fileType: "PDF",
+          category: "cbse",
+          year: "2024",
+          file: "cbse-physics-lab.pdf",
+        },
+        {
+          title: "UPSC Geography Notes",
+          description: "Images and diagrams for UPSC Geography.",
+          fileType: "Image",
+          category: "govt-exams",
+          year: "2024",
+          file: "upsc-geography-diagrams.zip",
+        },
+        {
+          title: "UPSC Polity Notes",
+          description: "Comprehensive polity notes for UPSC preparation.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2023",
+          file: "upsc-polity-notes.pdf",
+        },
+        {
+          title: "SSC CGL General Awareness",
+          description: "Quick revision notes for SSC CGL exams.",
+          fileType: "Word",
+          category: "govt-exams",
+          year: "2023",
+          file: "ssc-cgl-awareness.docx",
+        },
+        {
+          title: "MPSC History Notes",
+          description: "Complete history syllabus notes for MPSC.",
+          fileType: "Word",
+          category: "state-exams",
+          year: "2023",
+          file: "mpsc-history.docx",
+        },
+        {
+          title: "Banking Exam Quantitative Aptitude",
+          description: "Detailed guide with solved examples.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2024",
+          file: "banking-quantitative.pdf",
+        },
+        {
+          title: "Banking Exam English Guide",
+          description: "Grammar, vocabulary, and comprehension notes.",
+          fileType: "Word",
+          category: "govt-exams",
+          year: "2023",
+          file: "banking-english.docx",
+        },
+        {
+          title: "State Board Biology Notes",
+          description: "Detailed notes for state board biology exams.",
+          fileType: "PDF",
+          category: "state-exams",
+          year: "2023",
+          file: "state-biology-notes.pdf",
+        },
+        {
+          title: "GATE Mechanical Engineering",
+          description: "Complete GATE syllabus for mechanical engineering.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2024",
+          file: "gate-mechanical.pdf",
+        },
+        {
+          title: "JEE Advanced Chemistry",
+          description: "Important formulas and solved questions.",
+          fileType: "PDF",
+          category: "cbse",
+          year: "2024",
+          file: "jee-chemistry-notes.pdf",
+        },
+        {
+          title: "NEET Biology Quick Guide",
+          description: "Quick reference guide for NEET biology.",
+          fileType: "Image",
+          category: "govt-exams",
+          year: "2023",
+          file: "neet-biology.zip",
+        },
+        {
+          title: "IAS Mains Sociology Notes",
+          description: "Sociology notes for IAS Mains preparation.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2024",
+          file: "ias-sociology.pdf",
+        },
+        {
+          title: "CBSE 10 English Guide",
+          description: "Complete guide for CBSE Class 10 English exams.",
+          fileType: "Word",
+          category: "cbse",
+          year: "2023",
+          file: "cbse-english.docx",
+        },
+        {
+          title: "SSC CHSL Reasoning",
+          description: "Reasoning tips and tricks for SSC CHSL.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2023",
+          file: "ssc-chsl-reasoning.pdf",
+        },
+        {
+          title: "RPSC General Studies",
+          description: "Complete GS notes for Rajasthan exams.",
+          fileType: "PDF",
+          category: "state-exams",
+          year: "2024",
+          file: "rpsc-general-studies.pdf",
+        },
+        {
+          title: "State PSC Aptitude",
+          description: "General aptitude notes for state PSC exams.",
+          fileType: "PDF",
+          category: "state-exams",
+          year: "2023",
+          file: "state-psc-aptitude.pdf",
+        },
+        {
+          title: "CAT Logical Reasoning Guide",
+          description: "Logical reasoning practice for CAT exams.",
+          fileType: "Word",
+          category: "govt-exams",
+          year: "2023",
+          file: "cat-logical-reasoning.docx",
+        },
+        {
+          title: "Railway Group D Science",
+          description: "Important science topics for Railway Group D.",
+          fileType: "PDF",
+          category: "govt-exams",
+          year: "2023",
+          file: "railway-science.pdf",
+        },
+        {
+          title: "State TET Exam Notes",
+          description: "Child development and pedagogy notes.",
+          fileType: "PDF",
+          category: "state-exams",
+          year: "2024",
+          file: "state-tet.pdf",
+        },
+      ];
+
+      const repository = document.getElementById("repository");
+
+      function renderCards(
+        filterCategory = "all",
+        filterFileType = "all",
+        filterYear = "all"
+      ) {
+        repository.innerHTML = ""; // Clear previous cards
+
+        data.forEach((resource) => {
+          const { title, description, fileType, category, year, author, file } =
+            resource;
+
+          if (
+            (filterCategory === "all" || filterCategory === category) &&
+            (filterFileType === "all" ||
+              filterFileType === fileType.toLowerCase()) &&
+            (filterYear === "all" || filterYear === year)
+          ) {
+            const card = `
+        <div class="resource-card" 
+     data-category="${category}" 
+     data-file-type="${fileType.toLowerCase()}" 
+     data-year="${year}">
+  <h3 class="card-title">${title}</h3>
+  <p class="description">${description}</p>
+  <p class="file-info">File Type: ${fileType}</p>
+  <p class="file-info">Year: ${year}</p>
+  <p class="file-info">Uploaded By: ${author}</p>
+  <a href="${file}" download class="btn-download">Download</a>
+</div>
+
+      `;
+            repository.innerHTML += card;
+          }
+        });
+      }
+
+      document
+        .getElementById("filter-btn")
+        .addEventListener("click", function () {
+          const category = document.getElementById("category").value;
+          const fileType = document.getElementById("file-type").value;
+          const year = document.getElementById("year").value;
+
+          renderCards(category, fileType, year);
+        });
+
+      // Initial rendering
+      renderCards();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
 </html>
