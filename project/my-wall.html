@@ -10,13 +10,13 @@
     <div class="profile-page">
         <div class="profile-sidebar">
             <img id="profile-photo" src="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Avatar" class="profile-avatar">
-            <h2 id="user-name" class="user-name">Jibitesh</h2>
-            <p id="user-email" class="user-email">jibi@google.com</p>
+            <h2 id="user-name" class="user-name">Lavkush Solanki</h2>
+            <p id="user-email" class="user-email">KushLav12@gmail.com</p>
 
             <div class="profile-basic-info">
                 <p>Age: <span id="age">20</span></p>
                 <p>Location: <span id="location">Bhubneswar</span></p>
-                <p>CGPA: <span id="cgpa">8.5</span></p>
+                <p>CGPA: <span id="cgpa">9.82</span></p>
             </div>
             <button class="edit-profile-btn" onclick="openEditModal()">Edit Profile</button>
         </div>
@@ -68,8 +68,12 @@
         <div class="modal-content">
             <h2>Edit Profile</h2>
             <form id="edit-form">
-                <label for="photo">Photo URL:</label>
-                <input type="text" id="edit-photo" value="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=1887">
+                <!-- <label for="photo">Photo URL:</label>
+                <input type="text" id="edit-photo" value="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=1887"> -->
+
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="edit-photo" accept="image/*">
+                <!-- <img id="edit-photo-preview" src="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=1887" alt="Profile Preview" style="width: 150px; height: 150px; object-fit: cover; margin-top: 10px; border-radius: 50%; border: 2px solid #FFD700;"> -->
 
                 <label for="age">Age:</label>
                 <input type="number" id="edit-age" value="20">
