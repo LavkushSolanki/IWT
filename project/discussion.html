@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussion Page</title>
+  </head>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fad6d6;
+      color: #000000;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .post {
+      background-color: #ffffff;
+      border: 1px solid #000000;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #003366;
+    }
+
+    .description {
+      margin-bottom: 10px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .actions button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 0 5px;
+    }
+
+    .actions button:hover {
+      color: #ffd700;
+    }
+
+    .comments {
+      background-color: #ffffff;
+      border: 1px solid #000000;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .comment {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-bottom: 1px solid #ffc107;
+    }
+
+    .add-comment {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 60px;
+      border: 1px solid #000000;
+      border-radius: 4px;
+      padding: 5px;
+    }
+
+    button {
+      background-color: #ffc107;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #ffd700;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="post">
+        <h2>Ontario cutting power to US is an empty threat to Trump</h2>
+        <p class="description">
+          Most of Ontario's power to the US supplies Democratic states. I can
+          imagine nothing would make Trump happier than to have them suffer and
+          to be able to demonize Canada further.
+        </p>
+        <div class="actions">
+          <button class="upvote" onclick="vote('post', 'up')">▲</button>
+          <span id="post-votes">3</span>
+          <button class="downvote" onclick="vote('post', 'down')">▼</button>
+        </div>
+      </div>
+
+      <div class="comments">
+        <h3>Comments</h3>
+        <div id="comment-section">
+          <!-- Comments will appear here -->
+          <div class="comment">
+            <p>
+              <strong>clorox_cowboy:</strong> "...demonize Canada further."
+              Would that demonize Canada or Trump? If Mr. Trump doesn't want to
+              be President of the entire United States, perhaps we can find
+              someone who does.
+            </p>
+            <div class="actions">
+              <button class="upvote" onclick="vote('comment1', 'up')">▲</button>
+              <span id="comment1-votes">5</span>
+              <button class="downvote" onclick="vote('comment1', 'down')">
+                ▼
+              </button>
+            </div>
+          </div>
+
+          <div class="comment">
+            <p>
+              <strong>Golfandrun:</strong> My remark is that Trump is demonizing
+              Canada with all his BS. It's clear to me who is the demon.
+            </p>
+            <div class="actions">
+              <button class="upvote" onclick="vote('comment2', 'up')">▲</button>
+              <span id="comment2-votes">2</span>
+              <button class="downvote" onclick="vote('comment2', 'down')">
+                ▼
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="add-comment">
+          <textarea
+            id="comment-input"
+            placeholder="Add a comment..."
+          ></textarea>
+          <button onclick="addComment()">Comment</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let commentCount = 3;
+
+    function vote(id, type) {
+      const voteDisplay = document.getElementById(`${id}-votes`);
+      let currentVotes = parseInt(voteDisplay.textContent);
+
+      if (type === "up") {
+        currentVotes += 1;
+      } else {
+        currentVotes -= 1;
+      }
+
+      voteDisplay.textContent = currentVotes;
+    }
+
+    function addComment() {
+      const commentInput = document.getElementById("comment-input");
+      const commentSection = document.getElementById("comment-section");
+
+      if (commentInput.value.trim()) {
+        commentCount += 1;
+
+        const newComment = document.createElement("div");
+        newComment.className = "comment";
+        newComment.innerHTML = `
+      <p><strong>User${commentCount}:</strong> ${commentInput.value}</p>
+      <div class="actions">
+        <button class="upvote" onclick="vote('comment${commentCount}', 'up')">▲</button>
+        <span id="comment${commentCount}-votes">0</span>
+        <button class="downvote" onclick="vote('comment${commentCount}', 'down')">▼</button>
+      </div>
+    `;
+
+        commentSection.appendChild(newComment);
+        commentInput.value = "";
+      }
+    }
+  </script>
+</html>
