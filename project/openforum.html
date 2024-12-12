@@ -3,84 +3,269 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
-    <title>Frontend Mentor | Interactive comments section</title>
-    <link rel="stylesheet" href="openforum.css" />
+    <title>Discussion Forum</title>
+    <style>
+      /* General Reset */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #fad6d6; /* Peach background */
+        color: #003366; /* Navy Blue text */
+      }
+
+      /* Layout Styling */
+      .discussion-container {
+        display: flex;
+        flex-direction: row;
+        max-width: 1200px;
+        margin: 20px auto;
+        gap: 20px;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 25%;
+        background-color: #003366;
+        color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        height: fit-content;
+      }
+
+      .sidebar h2 {
+        margin: 0 0 10px;
+        color: #ffd700; /* Gold */
+      }
+
+      .sidebar p {
+        margin: 5px 0;
+      }
+
+      .sidebar-stats {
+        margin: 20px 0;
+      }
+
+      .sidebar-rules ul {
+        padding-left: 20px;
+      }
+
+      .sidebar-rules li {
+        margin: 5px 0;
+      }
+
+      /* Main Content */
+      .main-content {
+        width: 75%;
+      }
+
+      .start-discussion {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .start-discussion h3 {
+        margin-top: 0;
+      }
+
+      .start-discussion textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #003366;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .btn-start {
+        background-color: #ffc107; /* Yellow */
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .btn-start:hover {
+        background-color: #ffd700; /* Gold */
+      }
+
+      /* Discussion Cards */
+      .discussion-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .discussion-card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .discussion-card h4 {
+        margin: 0 0 10px;
+        color: #003366;
+      }
+
+      .discussion-card p {
+        margin: 0 0 10px;
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .card-footer span {
+        font-size: 14px;
+        color: #555555;
+      }
+
+      .card-actions button {
+        background-color: #ffc107;
+        border: none;
+        padding: 5px 10px;
+        margin-left: 10px;
+        border-radius: 5px;
+        color: #000000;
+        cursor: pointer;
+      }
+
+      .card-actions button:hover {
+        background-color: #ffd700;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .discussion-container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .main-content {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-<div style="position:absolute;left:1000px;top:30px; color:crimson; font-weight: 600 ; font-size: 400px;">
-  <P>
-    OpenForum
-  </P>
-
-
-</div>
-
-
-
-    <template class="reply-input-template">
-    <div class="reply-input container">
-      <img src="images/avatars/image-juliusomo.webp" alt="" class="usr-img">
-      <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
-      <button class="bu-primary">SEND</button>
-    </div>
-  </template>
-
-  <template class="comment-template">
-    <div class="comment-wrp">
-      <div class="comment container">
-        <div class="c-score">
-          <img src="images/icon-plus.svg" alt="plus" class="score-control score-plus">
-          <p class="score-number">5</p>
-          <img src="images/icon-minus.svg" alt="minus" class="score-control score-minus">
+    <div class="discussion-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Discussion</h2>
+          <p>The front page of conversations.</p>
         </div>
-        <div class="c-controls">
-          <a  class="delete"><img src="images/icon-delete.svg" alt="" class="control-icon">Delete</a>
-          <a  class="edit"><img src="images/icon-edit.svg" alt="" class="control-icon">Edit</a>
-          <a  class="reply"><img src="images/icon-reply.svg" alt="" class="control-icon">Reply</a>
+        <div class="sidebar-stats">
+          <p><strong>27K</strong> Members</p>
+          <p><strong>25</strong> Online</p>
+          <p><strong>Top 4%</strong> Rank by Size</p>
         </div>
-        <div class="c-user">
-          <img src="images/avatars/image-maxblagun.webp" alt="" class="usr-img">
-          <p class="usr-name">maxblagun</p>
-          <p class="cmnt-at">2 weeks ago</p>    
+        <div class="sidebar-rules">
+          <h3>Rules</h3>
+          <ul>
+            <li>1. Please use flair</li>
+            <li>2. Be specific</li>
+            <li>3. Make sure it is discussion</li>
+          </ul>
         </div>
-        <p class="c-text">
-          <span class="reply-to"></span>
-          <span class="c-body"></span>
-        </p>
-      </div><!--comment-->
-      <div class="replies comments-wrp">
-      </div><!--replies-->
-    </div>
-  </template>
-<main>
-  <div class="comment-section">
+      </aside>
 
-    <div class="comments-wrp">
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Start Discussion Section -->
+        <div class="start-discussion">
+          <h3>Start a Discussion</h3>
+          <textarea
+            id="postContent"
+            rows="4"
+            placeholder="What's on your mind about exams, courses, or books?"
+          ></textarea>
+          <button class="btn-start" id="postButton">Post</button>
+        </div>
 
-    </div> <!--commentS wrapper-->
-  <div class="reply-input container">
-      <img src="images/avatars/image-juliusomo.webp" alt="" class="usr-img">
-      <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
-      <button class="bu-primary">SEND</button>
-    </div> <!--reply input-->
-  </div> <!--comment sectio-->
-  
-  <div class="modal-wrp invisible">
-    <div class="modal container">
-      <h3>Delete comment</h3>
-      <p>Are you sure you want to delete this comment? This will remove the comment and cant be undone</p>
-      <button class="yes">YES,DELETE</button>
-      <button class="no">NO,CANCEL</button>
+        <!-- Discussion Cards -->
+        <div class="discussion-cards" id="discussionCards">
+          <div class="discussion-card">
+            <h4>Best Books for UPSC Preparation</h4>
+            <p>
+              What are some must-read books for UPSC 2024 preparation? Looking
+              for recommendations on history and polity.
+            </p>
+            <div class="card-footer">
+              <span>by u/Student123 • 2 hours ago</span>
+              <div class="card-actions">
+                <button>50 Upvotes</button>
+                <button>20 Comments</button>
+                <button>Share</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-  </div>
-</main>
-    <script src="openforum.js"></script>
+
+    <script>
+      document
+        .getElementById("postButton")
+        .addEventListener("click", function () {
+          const postContent = document
+            .getElementById("postContent")
+            .value.trim();
+
+          if (postContent === "") {
+            alert("Please write something before posting!");
+            return;
+          }
+
+          // Create a new discussion card
+          const newCard = document.createElement("div");
+          newCard.className = "discussion-card";
+
+          newCard.innerHTML = `
+        <h4>${postContent}</h4>
+        <p>A new discussion started by you!</p>
+        <div class="card-footer">
+          <span>by u/You • just now</span>
+          <div class="card-actions">
+            <button>0 Upvotes</button>
+            <button>0 Comments</button>
+            <button>Share</button>
+          </div>
+        </div>
+      `;
+
+          // Append the new card to the discussion cards section
+          const discussionCards = document.getElementById("discussionCards");
+          discussionCards.prepend(newCard);
+
+          // Clear the textarea
+          document.getElementById("postContent").value = "";
+        });
+        document.querySelectorAll(".discussion-card").forEach((card, index) => {
+        card.addEventListener("click", () => {
+          const postTitle = card.querySelector("h4").innerText;
+          const postDescription = card.querySelector("p").innerText;
+
+          // Save data to localStorage
+          localStorage.setItem(
+            "selectedPost",
+            JSON.stringify({ title: postTitle, description: postDescription })
+          );
+
+          // Navigate to the discussion page
+          window.location.href = "discussion.html";
+        });
+      });
+    </script>
   </body>
 </html>
