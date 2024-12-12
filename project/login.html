@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animated Login Form with Particles</title>
+    <link rel="stylesheet" href="login.css" />
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background: #ff4757;
+        /* White background */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="box">
+      <form
+        onsubmit="return validateCredentials()"
+        action="../index.html"
+        method="post"
+      >
+        <h2>Login</h2>
+        <div class="inputBox">
+          <input id="username" type="text" required="required" />
+          <span>Username</span>
+          <i></i>
+        </div>
+        <div class="inputBox">
+          <input id="password" type="password" required="required" />
+          <span>Password</span>
+          <i></i>
+        </div>
+        <div class="links">
+          <a href="./forget.html">Forgot Password?</a>
+          <a href="./signup.html">Signup</a>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <script>
+      function validateCredentials() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        if (username === "Lavkush" && password === "12345") {
+          return true;
+        } else {
+          alert("Invalid username or password");
+          return false;
+        }
+      }
+    </script>
+    <script src="particles-config.js"></script>
+  </body>
+</html>
