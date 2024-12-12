@@ -1,56 +1,110 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background: linear-gradient(to bottom, #FAD6D6, #FFFFFF);
+    color: #000000;
 }
 
 .profile-page {
     display: flex;
     max-width: 1200px;
-    margin: 20px auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: white;
 }
 
 .profile-sidebar {
-    background-color: #2b3a67;
+    /* background: linear-gradient(to bottom, #FFD700, #FFC107); */
+    /* background: linear-gradient(to right, #003366, #FFD700); */
+    background-color: #003366;
+
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .profile-avatar {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
+    border: 4px solid #FFFFFF;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .edit-profile-btn {
     margin-top: 20px;
-    padding: 10px 20px;
-    background: #6c63ff;
-    color: white;
+    padding: 12px 25px;
+    background: linear-gradient(to bottom, #FFD700, #FFC107);
+
+    /* background: linear-gradient(to right, #003366, #FFD700); */
+    color: #FFFFFF;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-weight: bold;
+}
+
+.edit-profile-btn:hover {
+    background: linear-gradient(to right, #FFC107, #FFD700);
+    transform: translateY(-3px);
 }
 
 .profile-content {
-    padding: 20px;
+    padding: 30px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .stat, .profile-section {
-    margin-bottom: 20px;
+    background: linear-gradient(to right, #FFFFFF, #FAD6D6);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover, .profile-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 h3 {
-    color: #2b3a67;
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+ul li {
+    margin: 5px 0;
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #FFD700;
+    background: #FFFFFF;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+ul li:hover {
+    background-color: #FFC107;
+    color: #FFFFFF;
 }
 
 .modal {
@@ -63,16 +117,17 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: fadeIn 0.5s ease;
 }
 
 .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 600px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 80vh;
-    overflow-y: auto;
+    background: linear-gradient(to bottom, #FFFFFF, #FAD6D6);
+    padding: 30px;
+    border-radius: 12px;
+    width: 500px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.4s ease;
+    border: 1px solid #FFD700;
 }
 
 .hidden {
@@ -81,52 +136,44 @@ h3 {
 
 input, textarea, button {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 textarea {
     resize: vertical;
-    min-height: 80px;
 }
 
-button {
-    background: #6c63ff;
-    color: white;
-    cursor: pointer;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 15px;
+button[type="button"] {
+    background: #FFD700;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 button[type="button"]:hover {
-    background-color: #5a4ed8;
+    background: #FFC107;
+    transform: translateY(-3px);
 }
 
-form label {
-    font-size: 14px;
-    color: #333;
-    margin-top: 15px;
-    display: block;
+@keyframes fadeIn {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.6);
+    }
 }
 
-form h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-form button {
-    background: #4caf50;
-}
-
-form button:nth-child(2) {
-    background: #f44336;
-}
-
-form button:hover {
-    opacity: 0.9;
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
