@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./introexam.css" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#">
+          <h1 style="color: #ffd700">AARON</h1>
+        </a>
+        <button
+          class="nav-toggle-btn"
+          data-nav-toggle-btn
+          aria-label="Toggle Menu"
+        >
+          <ion-icon name="menu-outline" class="open"></ion-icon>
+          <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li><a href="#" class="navbar-link">Home</a></li>
+            <li><a href="exam.html" class="navbar-link">E-Exam</a></li>
+            <li><a href="openforum.html" class="navbar-link">Openforum</a></li>
+            <li><a href="repo.html" class="navbar-link">E-Repository</a></li>
+            <li><a href="my-wall.html" class="navbar-link">My-Wall</a></li>
+            <li><a href="contactus.html" class="navbar-link">Contact Us</a></li>
+          </ul>
+
+          <div id="auth-container">
+            <!-- This section will dynamically show user info or register button -->
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="containers">
+      <h1 id="exam-title">Exam Name</h1>
+      <h2>Exam Instructions</h2>
+      <p>
+        Welcome to the test. This exam is designed to assess your understanding
+        and knowledge of the subject, covering essential concepts, practical
+        applications, and advanced topics. Please take a moment to carefully
+        read the instructions and guidelines provided before starting. Ensure a
+        focused and distraction-free environment to perform your best. Good
+        luck!
+      </p>
+
+      <h3>Guidelines</h3>
+      <ul>
+        <li>
+          Ensure you have a stable internet connection before starting the quiz.
+        </li>
+        <li>
+          Once you begin the test, the timer will start, and pausing is not
+          allowed.
+        </li>
+        <li>
+          Do not refresh or close the browser tab while the test is ongoing.
+        </li>
+        <li>
+          Each question carries equal marks, and there is no negative marking
+          for incorrect answers.
+        </li>
+        <li>
+          Submit your answers before the timer runs out to avoid automatic
+          submission.
+        </li>
+      </ul>
+
+      <h3>Important Notes</h3>
+      <ul>
+        <li>The quiz duration is 15 minutes.</li>
+        <li>You will have 20 questions to attempt.</li>
+        <li>All questions are mandatory.</li>
+      </ul>
+
+      <h3>Technical Requirements</h3>
+      <ul>
+        <li>
+          Compatible browsers: Google Chrome, Mozilla Firefox, or Safari (latest
+          versions).
+        </li>
+        <li>Ensure your device is charged or connected to a power source.</li>
+        <li>
+          Disable any browser extensions that might interfere with the quiz
+          interface.
+        </li>
+      </ul>
+
+      <h3>Tips for Success</h3>
+      <ul>
+        <li>Read each question carefully before answering.</li>
+        <li>
+          Manage your time efficiently. Spend around 30-45 seconds on each
+          question.
+        </li>
+        <li>
+          If you are unsure about a question, make an educated guess rather than
+          skipping it.
+        </li>
+        <li>Stay focused and avoid distractions during the test.</li>
+      </ul>
+
+      <h3>Code of Conduct</h3>
+      <ul>
+        <li>
+          By starting the test, you agree to abide by the rules and maintain
+          academic integrity.
+        </li>
+        <li>
+          Cheating, sharing answers, or using unauthorized resources is strictly
+          prohibited.
+        </li>
+        <li>
+          Violations of these rules may result in disqualification or further
+          action.
+        </li>
+      </ul>
+      <button id="start-button" onclick="startTest()">Start Test</button>
+    </div>
+
+    <script>
+      // Redirect to the actual quiz page
+      function startTest() {
+        localStorage.setItem("fullscreenRequest", "true");
+        window.location.href = "python-quiz.html";
+      }
+      // Get the exam name from localStorage
+      const examName = localStorage.getItem("selectedExamName");
+      // Update the page content dynamically
+      if (examName) {
+        document.getElementById("exam-title").textContent = examName;
+      }
+    </script>
+    <script src="exam.js"></script>
+  </body>
+</html>

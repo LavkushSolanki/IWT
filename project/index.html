@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AAROH</title>
+
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comforter+Brush&family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    /> -->
+  </head>
+  <!-- Color	HEX Code	Use Case
+Gold	#FFD700	Prestige and achievement.
+Navy Blue	#003366	Trust and focus in text and elements.
+Peach	#FAD6D6	Friendly background outside the logo.
+Yellow	#FFC107	Highlights and stars.
+White	#FFFFFF	Contrast and clarity in character.
+Black	#000000	Fine details and outlines. -->
+
+  <body style="background-color: #fad6d6" id="top">
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#">
+          <h1 style="color: #ffd700">AARON</h1>
+        </a>
+        <button
+          class="nav-toggle-btn"
+          data-nav-toggle-btn
+          aria-label="Toggle Menu"
+        >
+          <ion-icon name="menu-outline" class="open"></ion-icon>
+          <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li><a href="#" class="navbar-link">Home</a></li>
+            <li><a href="exam.html" class="navbar-link">E-Exam</a></li>
+            <li><a href="openforum.html" class="navbar-link">Openforum</a></li>
+            <li><a href="repo.html" class="navbar-link">E-Repository</a></li>
+            <li><a href="my-wall.html" class="navbar-link">My-Wall</a></li>
+            <li><a href="contactus.html" class="navbar-link">Contact Us</a></li>
+          </ul>
+
+          <div id="auth-container">
+            <!-- This section will dynamically show user info or register button -->
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <script>
+      // Handle login status using localStorage
+      document.addEventListener("DOMContentLoaded", () => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const authContainer = document.getElementById("auth-container");
+        const username = localStorage.getItem("userName") || "Guest"; // Fetch username from localStorage or default to Guest
+        if (isLoggedIn === "true") {
+          // Show user's name or logo
+          authContainer.innerHTML = `
+                <div class="user-info">
+                    <img src="https://via.placeholder.com/40" alt="User Logo" style="border-radius: 50%; margin-right: 10px;">
+                    <span>${username}</span>
+                    <a href="logout.html" class="btn btn-secondary" style="margin-left: 10px;">Logout</a>
+                </div>
+            `;
+        } else {
+          // Show register button if not logged in
+          authContainer.innerHTML = `<a href="registration.html" class="btn btn-secondary">Register</a>`;
+        }
+      });
+    </script>
+
+    <main>
+      <article>
+        <!-- HERO -->
+
+        <div
+          style="display: flex; justify-content: space-evenly; flex-wrap: wrap"
+        >
+          <div class="section hero">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <!-- Front of the card -->
+                <div class="flip-card-front"></div>
+                <!-- Back of the card -->
+                <div class="flip-card-back">
+                  <h2>AARON</h2>
+                  <p>
+                    Our learning platform inspires learners of all ages,
+                    delivering knowledge and skills directly to your fingertips.
+                    Join us to unlock endless opportunities for growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quote" id="quote-container">
+            <!-- Dynamic quotes will appear here -->
+            <span id="quote-text"></span><span class="cursor"></span>
+          </div>
+        </div>
+
+        <!-- DESTINATION -->
+
+        <section class="section destination">
+          <div class="container">
+            <p class="section-subtitle">About Courses</p>
+
+            <h2 class="h2 section-title">
+              Trending Mocks for Competitive Exams
+            </h2>
+
+            <!-- <ul class="destination-list">
+                <li>
+                  <figure class="card-banner">
+                    <img
+                      src="./images/img3.jpg"
+                      width="1110"
+                      height="480"
+                      loading="lazy"
+                      alt="Kuala Lumpur, Malaysia"
+                      class="img-cover"
+                    />
+                  </figure>
+                </li>
+
+                <li>
+                  <figure class="card-banner">
+                    <img
+                      src="./images/img4.jpg"
+                      width="1110"
+                      height="480"
+                      loading="lazy"
+                      alt="Kathmandu, Nepal"
+                      class="img-cover"
+                    />
+                  </figure>
+                </li>
+
+                <li>
+                  <figure class="card-banner">
+                    <img
+                      src="./images/img5.jpg"
+                      width="1110"
+                      height="480"
+                      loading="lazy"
+                      alt="Jakarta, Indonesia"
+                      class="img-cover"
+                    />
+                  </figure>
+                </li>
+              </ul> -->
+
+            <div id="customCarousel" class="carousel">
+              <!-- <ol class="carousel-indicators">
+                <li
+                  data-target="#customCarousel"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li data-target="#customCarousel" data-slide-to="1"></li>
+                <li data-target="#customCarousel" data-slide-to="2"></li>
+              </ol> -->
+              <div class="carousel-inner">
+                <div
+                  class="carousel-item active"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                  "
+                >
+                  <div>
+                    <img src="images/img1.jpg" alt="First slide" />
+                  </div>
+                  <br />
+                  <div>
+                    <h1>Course 1</h1>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/img2.jpg" alt="Second slide" />
+                  <br />
+                  <h1>Course 2</h1>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/img3.jpg" alt="Third slide" />
+                  <br />
+                  <h1>Course 3</h1>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/img3.jpg" alt="Third slide" />
+                  <br />
+                  <h1>Course 4</h1>
+                </div>
+                <div class="carousel-item">
+                  <img src="images/img3.jpg" alt="Third slide" />
+                  <br />
+                  <h1>Course 5</h1>
+                </div>
+              </div>
+              <a class="carousel-control-prev" role="button" id="prevBtn">
+                <span class="carousel-control-prev-icon" aria-hidden="true"
+                  >Prev</span
+                >
+                <!-- <span class="sr-only">Prev</span> -->
+              </a>
+              <a class="carousel-control-next" role="button" id="nextBtn">
+                <span class="carousel-control-next-icon" aria-hidden="true"
+                  >Next</span
+                >
+                <!-- <span class="sr-only">Next</span> -->
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- POPULAR -->
+
+        <section class="section popular">
+          <div class="container">
+            <p class="section-subtitle">Reference</p>
+
+            <h2 class="h2 section-title">Online Materials</h2>
+
+            <ul class="popular-list">
+              <li>
+                <div class="popular-card">
+                  <figure class="card-banner">
+                    <a href="./repo.html">
+                      <img
+                        src="./images/note1.jpg"
+                        width="740"
+                        height="518"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="card-content">
+                    <div class="card-wrapper">
+                      <!-- <div class="card-price">From $1.00</div> -->
+
+                      <div class="card-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+
+                        <!-- <data value="2">4</data> -->
+                      </div>
+                    </div>
+
+                    <h3 class="card-title">
+                      <a href="./repo.html"
+                        >Unlock key formulas and step-by-step explanations for
+                        every math topic, from algebra to calculus</a
+                      >
+                    </h3>
+
+                    <a href="./repo.html" style="color: #ffd700">Explore</a>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="popular-card">
+                  <figure class="card-banner">
+                    <a href="./repo.html">
+                      <img
+                        src="./images/note2.jpg"
+                        width="740"
+                        height="518"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="card-content">
+                    <div class="card-wrapper">
+                      <!-- <div class="card-price">From $1.00</div> -->
+
+                      <div class="card-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+
+                        <!-- <data value="3">(2)</data> -->
+                      </div>
+                    </div>
+
+                    <h3 class="card-title">
+                      <a href="./repo.html"
+                        >Quick guides and syntax essentials to help you in DSA
+                        and Algorithm development</a
+                      >
+                    </h3>
+
+                    <a href="./repo.html" style="color: #ffd700">Explore</a>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="popular-card">
+                  <figure class="card-banner">
+                    <a href="./repo.html">
+                      <img
+                        src="./images/note3.jpg"
+                        width="740"
+                        height="518"
+                        loading="lazy"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="card-content">
+                    <div class="card-wrapper">
+                      <!-- <div class="card-price">From $1.00</div> -->
+
+                      <div class="card-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+
+                        <!-- <data value="3">(3)</data> -->
+                      </div>
+                    </div>
+
+                    <h3 class="card-title">
+                      <a href="./repo.html"
+                        >Grasp fundamental concepts, diagrams, and theories to
+                        ace your economics exams.</a
+                      >
+                    </h3>
+
+                    <a style="color: #ffd700" href="./repo.html">Explore</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <br />
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <a
+                href="./repo.html"
+                style="
+                  color: black;
+                  padding: 8px;
+                  border-radius: 10px;
+                  border: 2px solid black;
+                "
+                >Explore More</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+
+        <!-- <section class="section about">
+          <div class="container">
+            <div class="about-content">
+              <p class="section-subtitle">About Us</p>
+
+              <h2 class="h2 section-title">
+                Ease Out Your Learning Experience with us.
+              </h2>
+
+              <p class="about-text">
+                Welcome to Learning Hub, your all-in-one destination for
+                learning, testing, and mastering new skills. We believe in
+                making education accessible, engaging, and effective, empowering
+                students to reach their fullest potential. Our platform combines
+                a comprehensive learning portal, a robust exam center, and a
+                vast library of notes and study materials to support students at
+                every stage of their academic journey.
+              </p>
+
+              <ul class="about-list">
+                <li class="about-item">
+                  <div class="about-item-icon">
+                    <ion-icon name="checkmark-done"></ion-icon>
+                  </div>
+
+                  <div class="about-item-content">
+                    <h3 class="h3 about-item-title">Real Exam Simulation:</h3>
+
+                    <p class="about-item-text">
+                      Take practice exams with timed conditions and question
+                      pools that simulate real exams. Monitor your improvement
+                      and stay motivated with in-depth progress tracking and
+                      goal-setting tools.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="about-item">
+                  <div class="about-item-icon">
+                    <ion-icon name="checkmark-done"></ion-icon>
+                  </div>
+
+                  <div class="about-item-content">
+                    <h3 class="h3 about-item-title">
+                      Comprehensive Resources:
+                    </h3>
+
+                    <p class="about-item-text">
+                      From course modules to exam prep, we cover every aspect of
+                      learning and assessment. Our platform provides
+                      personalized learning, helping students master concepts at
+                      their own pace.
+                    </p>
+                  </div>
+                </li>
+
+                <li class="about-item">
+                  <div class="about-item-icon">
+                    <ion-icon name="checkmark-done"></ion-icon>
+                  </div>
+
+                  <div class="about-item-content">
+                    <h3 class="h3 about-item-title">
+                      All-in-One Learning Hub:
+                    </h3>
+
+                    <p class="about-item-text">
+                      Access courses, take practice exams, and browse extensive
+                      notes all in one place. Study anytime, anywhere, with
+                      materials available 24/7 on desktop and mobile.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              <a href="#" class="btn btn-primary">Booking demo session Now</a>
+            </div>
+
+            <figure class="about-banner">
+              <img
+                src="./images/code.jpg"
+                width="756"
+                height="642"
+                loading="lazy"
+                alt=""
+                class="w-100"
+              />
+            </figure>
+          </div>
+        </section> -->
+
+        <style>
+          /* Section styles */
+          /* Section styles */
+          .overview-section {
+            padding: 4rem 2rem;
+            text-align: center;
+          }
+
+          .overview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+
+          .overview-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd200;
+            margin-bottom: 1rem;
+          }
+
+          .overview-subtitle {
+            font-size: 1.2rem;
+            color: black;
+            margin-bottom: 2rem;
+          }
+
+          /* Grid and box styles */
+          .overview-stats {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+          }
+
+          .stat-box {
+            background: rgb(229, 239, 254);
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 265px;
+            height: 265px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+          }
+
+          .stat-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Icon styles */
+          .icon-wrapper {
+            position: absolute;
+            bottom: -50px; /* Hidden below the box */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            color: #ffd200;
+            transition: bottom 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+          }
+
+          .stat-box:hover .icon-wrapper {
+            bottom: 10px; /* Moves up */
+            opacity: 1;
+          }
+
+          /* Text styles */
+          .stat-number {
+            text-align: center;
+            margin: 20px;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #003366;
+          }
+
+          .stat-label {
+            font-size: 2rem;
+            color: #555555;
+          }
+        </style>
+
+        <section class="overview-section">
+          <div class="overview-container">
+            <h2 class="section-subtitle">
+              A Platform Empowering Learners Worldwide
+            </h2>
+            <br />
+            <p class="h2 section-title">
+              Explore the numbers that define our platform's success and
+              offerings.
+            </p>
+            <br />
+            <br />
+            <div class="overview-stats">
+              <div class="stat-box">
+                <h3 class="stat-number">1 Million+</h3>
+                <p class="stat-label">Happy Students</p>
+                <div class="icon-wrapper">
+                  <i class="fas fa-user-graduate"></i>
+                </div>
+              </div>
+              <div class="stat-box">
+                <h3 class="stat-number">24000+</h3>
+                <p class="stat-label">Mock Tests</p>
+                <div class="icon-wrapper">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+              </div>
+              <div class="stat-box">
+                <h3 class="stat-number">14000+</h3>
+                <p class="stat-label">Video Lectures</p>
+                <div class="icon-wrapper">
+                  <i class="fas fa-video"></i>
+                </div>
+              </div>
+              <div class="stat-box">
+                <h3 class="stat-number">80000+</h3>
+                <p class="stat-label">Practice Papers</p>
+                <div class="icon-wrapper">
+                  <i class="fas fa-file-archive"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- review action -->
+
+    <style>
+      /* Section styling */
+      .testimonials-section {
+        padding: 2rem 1rem;
+      }
+
+      .testimonials-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Testimonial card styling */
+      .testimonial-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        width: 23%;
+        height: 307px;
+        text-align: left;
+      }
+
+      .testimonial-card blockquote {
+        margin: 0;
+        font-size: 2rem;
+        color: #555;
+        position: relative;
+      }
+
+      .testimonial-card blockquote:before {
+        content: "“";
+        font-size: 4rem;
+        color: #ffd200;
+        position: absolute;
+        left: 0;
+        top: -10px;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items:flex-end;
+        margin: auto;
+      }
+
+      .testimonial-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .author-details h4 {
+        font-size: 2rem;
+        color: #333;
+        margin: 0;
+      }
+
+      .author-details p {
+        font-size: 0.8rem;
+        color: #555;
+        margin: 0;
+      }
+    </style>
+
+    <section class="testimonials-section">
+      <div class="testimonials-container">
+        <!-- Testimonial Card 1 -->
+        <div class="testimonial-card">
+          <blockquote>
+            <p>
+              I used to regularly follow the YouTube videos, prelims booster
+              videos, and specially editorial discussions where I made important
+              pointers.
+            </p>
+          </blockquote>
+          <div class="testimonial-author">
+            <img src="https://via.placeholder.com/50" alt="Anmol Rathore" />
+            <div class="author-details">
+              <h4>Anmol Rathore</h4>
+              <p>UPSC CSE 2023 AIR 7 | UPSC</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 2 -->
+        <div class="testimonial-card">
+          <blockquote>
+            <p>
+              I am Raja Majhi, and I am thrilled to share that I have secured
+              All India Rank 1 (AIR 1) in the GATE 2024 examination in ECE. From
+              the very beginning, Physics Wallah stood out for its structured
+              and comprehensive curriculum.
+            </p>
+          </blockquote>
+          <div class="testimonial-author">
+            <img src="https://via.placeholder.com/50" alt="Raja Majhi" />
+            <div class="author-details">
+              <h4>Raja Majhi</h4>
+              <p>GATE 2024 AIR 1 | GATE</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial Card 3 -->
+        <div class="testimonial-card">
+          <blockquote>
+            <p>
+              PW helped me in establishing the basics of every subject through
+              which I was able to progress quickly and was also able to increase
+              my speed and maintain accuracy.
+            </p>
+          </blockquote>
+          <div class="testimonial-author">
+            <img src="https://via.placeholder.com/50" alt="Amit Kumar Mandal" />
+            <div class="author-details">
+              <h4>Amit Kumar Mandal</h4>
+              <p>IBPS Topper | Banking</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">E-EXAM</p>
+            </li>
+
+            <li>
+              <a href="./quiz.html" class="footer-link">Practice Tests</a>
+            </li>
+
+            <li>
+              <a href="./quiz.html" class="footer-link">Timed Exams</a>
+            </li>
+
+            <li>
+              <a href="./quiz.html" class="footer-link">Topic Quizzes</a>
+            </li>
+
+            <li>
+              <a href="./quiz.html" class="footer-link">Score Analytics</a>
+            </li>
+
+            <li>
+              <a href="./quiz.html" class="footer-link">Mock Exams</a>
+            </li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">OPEN-FORUM</p>
+            </li>
+
+            <li>
+              <a href="./openforum.html" class="footer-link">Study Groups</a>
+            </li>
+
+            <li>
+              <a href="./openforum.html" class="footer-link">Q&A Threads</a>
+            </li>
+
+            <li>
+              <a href="./openforum.html" class="footer-link">Exam Tips</a>
+            </li>
+
+            <li>
+              <a href="./openforum.html" class="footer-link"
+                >Subject Discussions</a
+              >
+            </li>
+
+            <li>
+              <a href="./openforum.html" class="footer-link">Peer Help</a>
+            </li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">E-REPOSITORY</p>
+            </li>
+
+            <li>
+              <a href="./repo.html" class="footer-link">Lecture Notes</a>
+            </li>
+
+            <li>
+              <a href="./repo.html" class="footer-link">Study Guides</a>
+            </li>
+
+            <li>
+              <a href="./repo.html" class="footer-link">Past Papers</a>
+            </li>
+
+            <li>
+              <a href="./repo.html" class="footer-link">Flashcards</a>
+            </li>
+
+            <li>
+              <a href="./repo.html" class="footer-link">E-Books</a>
+            </li>
+          </ul>
+
+          <div class="footer-list">
+            <p class="footer-list-title">Contact Us</p>
+
+            <p class="newsletter-text">
+              Ph-No:8989232321
+              <br />
+              Email:aaron23@private.com
+            </p>
+            <p class="newsletter-text">
+              AARON, Silicon Hills,<br />
+              Patia,Bhubaneswar- 751024 <br />
+              Odisha, India.
+            </p>
+
+            <!-- <form action="" class="newsletter-form">
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Email address"
+                class="newsletter-input"
+              />
+
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form> -->
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+          "
+        >
+          <!-- <a href="#" class="logo">AARON</a> -->
+
+          <ul class="social-list">
+            <li>
+              <a
+                href="https://www.facebook.com/siliconite/"
+                class="social-link"
+              >
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://x.com/Silicontech_bbs?s=08" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="https://www.instagram.com/silicontech_bbs/"
+                class="social-link"
+              >
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <a
+      href="#top"
+      class="go-top"
+      style="background-color: #ffd700; color: #003366"
+      data-go-top
+      aria-label="Go To Top"
+    >
+      <ion-icon name="chevron-up-outline"></ion-icon>
+    </a>
+
+    <script src="./scripts.js"></script>
+    <script src="./script.js"></script>
+    <script src="./scroll.js"></script>
+    <script src="./autowrite.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

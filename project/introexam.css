@@ -1,0 +1,88 @@
+      /* General Reset */
+      body,
+      h1,
+      h2,
+      h3,
+      p,
+      ul,
+      li,
+      a,
+      button {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+       .highlight {
+        color: #d9534f;
+        font-weight: bold;
+      }
+
+      /* Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fad6d6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Main Content Styling */
+      .containers {
+        color: white;
+        background-color: #003366;
+        /* border: 2px solid black; */
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .containers h1 {
+        color: #ffd700;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .containers h2,
+      .containers h3 {
+        color: #ffd700;
+        margin-bottom: 15px;
+      }
+
+      .containers ul {
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      .containers ul li {
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .containers ul li:before {
+        content: "•";
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        left: -20px;
+        top: 0;
+      }
+
+      .containers button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        border: 2px solid white;
+        /* background-color: white; */
+        /* border: none; */
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .containers button:hover {
+        color: #004494;
+        background-color: white;
+      }

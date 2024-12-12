@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Quiz</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .timer {
+        font-size: 1.5rem;
+        color: #ff0000;
+        margin-bottom: 20px;
+      }
+
+      .question-container {
+        width: 80%;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background: #f7971e;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #ff9500;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .submit-btn {
+        background: #d32f2f;
+      }
+
+      .submit-btn:hover {
+        background: #b71c1c;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="exam-title">Python Quiz</h1>
+    <button id="start-quiz-btn">Start Quiz</button>
+
+    <div class="timer" id="timer" style="display: none">Time Left: 05:00</div>
+    <div
+      class="question-container"
+      id="question-container"
+      style="display: none"
+    >
+      <p id="question">Question will appear here...</p>
+      <ul id="options">
+        <!-- Options will be dynamically inserted here -->
+      </ul>
+    </div>
+    <div class="buttons" style="display: none" id="quiz-buttons">
+      <button id="previous-btn" onclick="previousQuestion()">Previous</button>
+      <button id="next-btn" onclick="nextQuestion()">Next</button>
+      <button id="save-btn" onclick="saveQuestion()">Save</button>
+      <button id="submit-btn" class="submit-btn" onclick="submitQuiz()">
+        Submit
+      </button>
+    </div>
+    <script src="./pythonscript.js"></script>
+    <script>
+      const examName = localStorage.getItem("selectedExamName");
+      // Update the page content dynamically
+      if (examName) {
+        document.getElementById("exam-title").textContent = examName;
+      }
+      // Handle Fullscreen Request on Button Click
+      const startQuizBtn = document.getElementById("start-quiz-btn");
+      const timer = document.getElementById("timer");
+      const questionContainer = document.getElementById("question-container");
+      const quizButtons = document.getElementById("quiz-buttons");
+      const elem = document.documentElement;
+
+      startQuizBtn.addEventListener("click", () => {
+        // Enter fullscreen mode
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch((err) => {
+            console.error(`Error trying to enable fullscreen: ${err.message}`);
+          });
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen(); // Safari
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen(); // IE/Edge
+        }
+
+        // Show quiz content
+        startQuizBtn.style.display = "none"; // Hide start button
+        timer.style.display = "block";
+        questionContainer.style.display = "block";
+        quizButtons.style.display = "flex";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Categories</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="exam.css" />
+  </head>
+  <body>
+    <header class="header" data-header>
+      <div class="container">
+        <a href="#">
+          <h1 style="color: #ffd700">AARON</h1>
+        </a>
+        <button
+          class="nav-toggle-btn"
+          data-nav-toggle-btn
+          aria-label="Toggle Menu"
+        >
+          <ion-icon name="menu-outline" class="open"></ion-icon>
+          <ion-icon name="close-outline" class="close"></ion-icon>
+        </button>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li><a href="#" class="navbar-link">Home</a></li>
+            <li><a href="exam.html" class="navbar-link">E-Exam</a></li>
+            <li><a href="openforum.html" class="navbar-link">Openforum</a></li>
+            <li><a href="repo.html" class="navbar-link">E-Repository</a></li>
+            <li><a href="my-wall.html" class="navbar-link">My-Wall</a></li>
+            <li><a href="contactus.html" class="navbar-link">Contact Us</a></li>
+          </ul>
+
+          <div id="auth-container">
+            <!-- This section will dynamically show user info or register button -->
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="mainn" style="display: flex">
+      <aside class="sidebar">
+        <ul>
+          <li id="ssc" class="active">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/ssc_All_1583571021.png"
+              alt="SSC"
+            />
+            SSC Exams
+          </li>
+          <li id="banking">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/banking_All_1583571298.png"
+              alt="Banking"
+            />
+            Banking Exams
+          </li>
+          <li id="teaching">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/teaching_All_1583570997.png"
+              alt="Teaching"
+            />
+            Teaching Exams
+          </li>
+          <li id="civil">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/UPSC_All_1603294825.png"
+              alt="Civil Services"
+            />
+            Civil Services Exam
+          </li>
+          <li id="railways">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/railways_All_1583571029.png"
+              alt="Railways"
+            />
+            Railways Exams
+          </li>
+          <li id="railways">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/engineering%20recruitment_All_1583571265.png"
+              alt="Railways"
+            />
+            Engineering Exams
+          </li>
+          <li id="railways">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/defence_All_1583571289.png"
+              alt="Railways"
+            />
+            Defence Exam
+          </li>
+          <li id="railways">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/police_All_1583571236.png"
+              alt="Railways"
+            />
+            Police Exam
+          </li>
+          <li id="railways">
+            <img
+              src="https://cdn.testbook.com/resources/productionimages/JEE%20Mains%20NTA_All_1616070433.png"
+              alt="Railways"
+            />
+            NCA Exam
+          </li>
+        </ul>
+      </aside>
+      <div class="content">
+        <!-- <a href="./python-intro.html"> -->
+        <div id="examGrid" class="exam-grid">
+          <!-- Exams will be dynamically inserted here -->
+        </div>
+        <!-- </a> -->
+      </div>
+    </div>
+
+    <script src="exam.js"></script>
+  </body>
+</html>
