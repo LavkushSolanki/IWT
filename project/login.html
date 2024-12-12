@@ -20,11 +20,7 @@
   <body>
     <div id="particles-js"></div>
     <div class="box">
-      <form
-        onsubmit="return validateCredentials()"
-        action="../index.html"
-        method="post"
-      >
+      <form onsubmit="validateCredentials(event)">
         <h2>Login</h2>
         <div class="inputBox">
           <input id="username" type="text" required="required" />
@@ -38,20 +34,20 @@
         </div>
         <div class="links">
           <a href="./forget.html">Forgot Password?</a>
-          <a href="./signup.html">Signup</a>
+          <a href="./registration.html">Signup</a>
         </div>
         <button type="submit">Login</button>
       </form>
     </div>
     <script>
-      function validateCredentials() {
+      function validateCredentials(event) {
+        event.preventDefault(); // Prevent the form from refreshing the page
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         if (username === "Lavkush" && password === "12345") {
-          return true;
+          window.location.href = "./index.html"; // Redirect on valid credentials
         } else {
-          alert("Invalid username or password");
-          return false;
+          alert("Invalid username or password"); // Show error for invalid credentials
         }
       }
     </script>
